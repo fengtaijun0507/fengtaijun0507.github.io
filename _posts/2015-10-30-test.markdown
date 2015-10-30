@@ -1,0 +1,7 @@
+---
+layout: post
+title:  First step on the github
+date:   2015-10-30
+---
+
+hello world!
