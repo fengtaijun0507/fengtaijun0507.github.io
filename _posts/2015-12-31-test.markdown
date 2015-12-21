@@ -1,6 +1,6 @@
 ---
 layout: re-layout
-title:  Second step on the github
+title:  Study from imook.com
 date:   2015-12-21
 ---
 
