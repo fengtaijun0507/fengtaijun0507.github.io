@@ -30,8 +30,8 @@ date:   2015-10-30
      2）配置文件的修改：
          A."We dropped a number of dependencies the Core Team felt were optional"
          jekyll3.x 丢弃了一些依赖，如果需要使用必须显示安装，并且在配置文件显示添加相应gem，
-         例如
-                            gems: [jekyll-paginate]
+         例如：gems: [jekyll-paginate]
+                            
          B.GitHub 5月1日以后停止对redcarpet的支持
            在配置文件中修改:markdown:         kramdown
 
