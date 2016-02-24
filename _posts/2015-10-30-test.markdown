@@ -2,7 +2,7 @@
 
 layout: post
 
-title:  Hello, Github——利用Gihub+Jekyll制作自己的博客
+title:  Hello, Github——利用Github+Jekyll制作自己的博客
 
 date:   2015-10-30
 
