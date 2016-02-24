@@ -8,7 +8,7 @@ date:   2016-02-24 22:32
 ---
 
 1.bootstrap使用Normalize.css去重置：
-  因此项目中使用Bootrap也应该使用同版本的Normalize.css去重置
+  因此项目中使用boostrap也应该使用同版本的Normalize.css去重置
 
 2.bootstrap的组件,css结构：组建都会有一个container块包裹
      div.container
@@ -16,7 +16,7 @@ date:   2016-02-24 22:32
 3.修饰元素的样式通过相应的classname
 
 
-4.bootrap:可以为一个元素设置不同设备的尺寸，配合响应式实现布局
+4.boostrap:可以为一个元素设置不同设备的尺寸，配合响应式实现布局
 
 5.bootstrap :
 
