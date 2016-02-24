@@ -1,0 +1,84 @@
+---
+
+layout: post
+
+title:  "Git学习笔记（一）"
+
+date:   2016-02-25
+
+---
+
+## 1.远程仓库
+     SSH:ssh-keygen -t rsa -C "youremail@example.com" 
+
+## 2.分支管理
+    git checkout -b dev
+
+    1)git init后虽然有一个默认master，但是此时运行 git checkout -b dev，git branch 发现不存在master
+      解决方法是手动生成一个新的master
+    
+    2）分支合并
+
+       （日后添加合并示意图）
+
+      $ git merge dev
+      Updating ed4358b..aa658c9
+      Fast-forward
+      readme.txt | 3 ++-
+      1 file changed, 2 insertions(+), 1 deletion(-)
+      注意：Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把 master指向dev的当前提交，所以合并速度⾮非常快。
+    3）删除分支：
+        git branch -d name
+        git branch -D name：强制
+        问题：然后还有删除分支如何保留分支信息？
+         
+    4)解决合并冲突
+         A.冲突1，不同分支修改同一文件不同内容，造成的冲突：切换的主分支，再手动修改自己分支的内容，之后提交
+
+          当master有提交，分支branchname也有提交，向master合并分支就会冲突
+         
+          查看文件修改分支点手动修改内容，即可解决冲突
+
+         注意：git log --graph --pretty=oneline --abbrev-commit
+         注意：规避这种冲突，push之前先执行：git pull
+        B.冲突2，对于分支修改了同一文件的相同内容，无论手动修改冲突或者 git pull，都会覆盖内容，这时候需要沟通
+    5）分支策略
+       master，dev，john，paul
+        
+       属于自己的分支可以只建在本地，不用上传到远程，但是上传后更放心吧，方便保存自己的修改信息 
+         
+
+    6）零时bug分支
+       git stash(报错现场)
+       git stash apply
+       git stash list
+       git stash pop
+
+    7)git tag
+      关于tag以后再添加详细内容
+
+    8)远程git服务器：origin默认代表远程主机名
+
+       git clone：
+       ssh:git clone git@github.com:fengtaijun0507/gitskills.git
+       git clone：竟然只有一个master分支，可以通过git branch -a 查看所有分支
+       如何在本第简历与远程相同的分支并且相关联：
+        git checkout -b dev origin/dev
+
+       git push：
+       语法：git push origin master(寻找相同名字的分支)
+             git push origin dev
+       问题：推送相应的分支，本地是否应该在相应的分支下
+       答：默认推送的是当前分支，可以指定推动分支，通过 git push origin dev
+       
+       注意：本地新建了一个分支，而远程还没有，那么推送的语句是：
+             列如： git push --set-upstream origin dev
+
+
+### 3.小结，本次学习时对git的基础知识的学习。
+
+
+
+       
+    
+      
