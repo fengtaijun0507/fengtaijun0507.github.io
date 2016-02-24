@@ -1,7 +1,52 @@
 ---
+
 layout: post
-title:  First step on the github
+
+title:  Hello, Github——利用Gihub+Jekyll+Markdown制作自己的博客
+
 date:   2015-10-30
+
 ---
 
-hello world!
+## 1.Github pages 站点申请
+
+日后再补
+
+## 2.本地环境搭建
+    
+日后再补
+ 
+## 3.Jekyll 2.x——3.x升级相关注意问题
+	
+	1）主要是更新本地环境，根据Gemfile，Gemfile.lock
+       执行：bundle update
+    注意：由于多次使用bundle install造成多个版本的gem，
+         bug: Unresolved specs during Gem::Specification.reset:
+         对于jekyll多个版本，则造成
+         Dependency Error: Yikes! It looks like you don't have jekyll-paginate or one of its dependencies installed.
+         解决方法：
+                gem list gem_name 查看详情
+                gem uninstall gem_name 选择相应版本删除
+     2）配置文件的修改：
+         A."We dropped a number of dependencies the Core Team felt were optional"
+         jekyll3.x 丢弃了一些依赖，如果需要使用必须显示安装，并且在配置文件显示添加相应gem，
+         例如
+                            gems: [jekyll-paginate]
+         B.GitHub 5月1日以后停止对redcarpet的支持
+           在配置文件中修改:markdown:         kramdown
+
+         C. "Syntax highlighter changed"
+           在配置文件中修改:highlighter:      rouge
+
+         D. Relative Permalink support removedPermalink
+           在配置文件中移除：relative_permalinks: true
+         E.添加future：true
+
+##4.[官方升级帮助文档](http://jekyllrb.com/docs/upgrading/2-to-3/)
+          
+         
+
+    
+
+  
+
