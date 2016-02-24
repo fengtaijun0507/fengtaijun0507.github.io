@@ -2,7 +2,7 @@
 
 layout: post
 
-title:  Hello, Github——利用Gihub+Jekyll+Markdown制作自己的博客
+title:  Hello, Github——利用Gihub+Jekyll制作自己的博客
 
 date:   2015-10-30
 
@@ -42,7 +42,7 @@ date:   2015-10-30
            在配置文件中移除：relative_permalinks: true
          E.添加future：true
 
-##4.[官方升级帮助文档](http://jekyllrb.com/docs/upgrading/2-to-3/)
+## 4.[官方升级帮助文档](http://jekyllrb.com/docs/upgrading/2-to-3/)
           
          
 
