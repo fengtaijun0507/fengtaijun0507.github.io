@@ -1,0 +1,152 @@
+---
+layout: post
+
+title:  "Less——学习笔记(一)"
+
+date:   2016-02-25 22:29
+
+---
+
+## 一.less的环境配置
+
+* less的安装，npm install -g less,以全局方式安装。
+* less及时编译：koala软件，或者gulp watch，或者sublime lessTocss插件，个人习惯kola来做简单的项目，而gulp watch用于规模更大的项目。
+
+## 二.less基础语法
+
+变量，运算，迭代等等特性
+
+### 1.注释
+
+* //编译后，只存在less文件中
+* /*不被编译*/，存在于css文件中
+
+### 2.变量
+  变量名:@name:value;
+
+### 3.混合，
+  1）可带参数
+  类似函数，（注意名字混合的命名前面要加加一个“.”）然后其他元素可以用来调用，可带有默认值，也可以在调用的时候修改默认值：
+
+	 .border-03(@border-width:10px){ 
+        border-width：@border-width
+      }
+
+	  ele{
+	   .border-03();//默认值
+	  }
+	  ele{
+	   .border-03(20px);//修改默认值
+	  }
+
+ 2）不带参数，不需要带括号,但是尽量带括号，因为对于.border-03{}，若存在元素className为border-03的话，会造成与css的混淆。
+
+### 4.混合的匹配模式：相当于switch语句
+
+	普通的三角形写法：
+	  .triangle{
+	    width:0;
+	    height:0;
+	    overflow:hidden;//ie6 最小宽度的问题
+	
+	    border-width:10px;
+	    border-color:transparent transparent red transparent;
+	    border-style:dashed dashed solid dashed;
+	  }
+
+	匹配模式：
+	  .triangle(top,@w:5px,@c:#ccc){
+	       width:0;
+	       height:0;
+	       overflow:hidden;//ie6 最小宽度的问题
+	       border-width:@w;
+	       border-color:transparent transparent @c transparent;
+	       border-style:dashed dashed solid dashed;
+	  }
+	  .triangle(bottom,@w:5px,@c:#ccc){
+	       width:0;
+	       height:0;
+	       overflow:hidden;//ie6 最小宽度的问题
+	       border-width:@w;
+	       border-color:@c transparent transparent transparent;
+	       border-style:dashed dashed solid dashed;
+	  }
+	   .triangle(left,@w:5px,@c:#ccc){
+	       width:0;
+	       height:0;
+	       overflow:hidden;//ie6 最小宽度的问题
+	       border-width:@w;
+	       border-color:transparent @c transparent transparent;
+	       border-style:dashed dashed solid dashed;
+	  }
+	  .triangle(right,@w:5px,@c:#ccc){
+	       width:0;
+	       height:0;
+	       overflow:hidden;//ie6 最小宽度的问题
+	       border-width:@w;
+	       border-color: transparent transparent transparent @c;
+	       border-style:dashed dashed solid dashed;
+	  }
+	   .triangle(@_,@w:5px,@c:#ccc){
+	       width:0;
+	       height:0;
+	       overflow:hidden;//ie6 最小宽度的问题
+	  }
+	
+	  .sanjiao{
+	    .triangle(bottom,100px);
+     }
+### 5.运算(相对于变量而言)
+
+	  @test1:300px;
+	  .box{
+	   width: @test1+20px;
+	  }
+
+### 6.嵌套规则
+
+	/* 嵌套 :原则，嵌套的层数应进可能少*/
+	.list{
+		list-style:none;
+		width: 300px;
+		margin:0 auto;
+		li{
+			heihgt:30px;
+		}
+	    a{
+	    	float:left;
+	    	//&:代表上一层选择器
+	    	&:hover{
+	    		color:red;
+	    	}
+	    }
+	}
+### 7.@arguments
+
+
+
+### 8.避免编译：
+	  width:~'calc(100% - 35)'
+	  ~'':滤镜以及计算函数等等
+###  9.！important
+
+	   混合后面加！important
+	
+	  .border-03(@border-width:10px){
+	     width:@border-width;
+	     color:red;
+	   }
+	   ele{
+	   .border-03() !important;//默认值
+	   }
+
+### 10.常用的变量：背景颜色，hover颜色,px值
+
+先在块中确定局部变量，变量名加块的前缀，这些宽度在居中的时候你可以利用，less中的运算才做。最后结束的时候提取到单独文件中，分块存放，以便维护
+
+## 小结
+除此之外less文件还支持导入外部文件：@import 路径；另外有位大神Busy制作了zless，可以看作类似一种less库，里面有种库函数，更方便书写css，只要将zless下载后，通过@import引入相应文件，就可使用。
+
+
+
+

@@ -1,0 +1,79 @@
+---
+layout: post
+
+title:  "移动端开发学习笔记（一）"
+
+date:   2016-02-25 22:29
+
+---
+
+## 1.移动端应该知道的事情：
+
+### 一.概述：
+
+  移动端web开发： 主要基于ios和android环境进行开发，（本文依照参考文献，给自己从头到尾捋一遍，是对他们博客的学习笔记记录）
+
+  
+> 优势：主流的移动端浏览器是基于webkit开发，所以相对与PC端，不需要考虑更多的兼容性
+
+> 劣势：android系统的碎片化；不同系统之间的交互有差异；手机的尺寸的千差万别
+      
+
+### 二.移动页面的头文件
+    
+    1. meta:
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="email=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+
+    注意：下面三个应该是针对webapp，亲测如果直接是h5页面在safari浏览器中运行时没有效果的,在网页添加到主屏幕的时候可以起作用
+    
+    <meta name="apple-mobile-web-app-title" content="name">//指定添加到主屏幕的name
+
+    <meta name="apple-mobile-web-app-capable" content="yes">//全屏，没有地址栏和工具栏
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">//设置状态栏的颜色
+    content：black/default/black-translucent
+
+  三种状态栏示例 （通过将网页加载到iphone主屏幕即可看到效果）
+
+  ![black_黑色状态栏示例](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/black.PNG)
+  ![default_白色状态栏示例](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/default.PNG)  ![black-translucent_透明状态栏示例](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/black-t.PNG)
+    
+    
+    2. link:
+    apple-touch-icon是IOS设备的私有标签，如果设置了相应apple-touch-icon标签，则添加到主屏上的图标会使用指定的图片。apple-touch-icon 图片自动处理成圆角和高光等效果。 apple-touch-icon-precomposed 禁止系统自动添加效果，直接显示设计原图。 
+
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" /> <!-- iPhone 和 iTouch，默认 57x57 像素，必须有 -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" /> <!-- iPad，72x72 像素，可以没有，但推荐有 -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png" /> <!-- Retina iPhone 和 Retina iTouch，114x114 像素，可以没有，但推荐有 -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png" /> <!-- Retina iPad，144x144 像素，可以没有，但推荐有 -->
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="retinahd_icon.png">
+    缩略图
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+#### 头文件最终成果:[head](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/head.txt),[head2](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/head2.txt)
+
+### 三.移动端的适配
+目前比较成熟的适配方案：1.定宽布局；2.rem布局 具体见移动端开发学习笔记（二）
+   
+
+## 2.参考文献：    
+### [1].[FEX——HTML head 头标签](http://fex.baidu.com/blog/2014/10/html-head-tags/)
+
+### [2].[支付宝的移动开发解决方案](http://am-team.github.io/amg/dev-exp-doc.html#移动开发事件)
+
+### [3].[腾讯的AlloyTeam团队——移动web问题小结](http://www.alloyteam.com/2015/06/yi-dong-web-wen-ti-xiao-jie/)
+### [4].[移动web开发规范](https://github.com/alanerzhao/doc/blob/master/document/mobile_web_specification%20.md)
+    
+    
+    
+   
+    
+   
+
+
+
+

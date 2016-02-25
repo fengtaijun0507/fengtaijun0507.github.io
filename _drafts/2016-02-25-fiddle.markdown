@@ -1,0 +1,25 @@
+fiddler：可以用来干什么
+
+1.开发环境host配置
+
+2.前后端接口调试
+
+3.线上bugfix
+
+4.性能分析与优化
+
+界面：
+工具栏：注释，replay（回放session），remove（各种规则的remove），go(debug,请求的断点可以继续往下走)
+stream（模式切换，流模式与缓冲模式的切换），decode(http的请求加压出来方便查看)，keep session（保持会话数量）。Any Process（过略请求），Find（查找绘画），截图工具，TextWizard（编码和解码文本内容，如url）
+
+状态栏：控制台  help,capturing(控制fuddler是否工作，也就是是否器代理服务器的作用)
+
+监控面板：
+
+在customRules文件中main()添加 FiddlerObject.UI.lvSessions.AddBoundColumn("Server IP", 120, "X-HostIP");才能显示
+
+Autoreponder:可以服务器的文件代理到本地，从而试探出bug的位置（这个与恶胎粗糙了吧）
+
+composer：前后端接口的调试，通过修改请求地址的参数来
+
+5.https证书安装
