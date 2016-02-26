@@ -58,9 +58,9 @@ date:   2016-02-25 22:29
 
 ### 三.移动端的适配
 目前比较成熟的适配方案：1.定宽布局；2.rem布局 具体见移动端开发学习笔记（二）
-   
 
-## 2.参考文献：
+
+## 2.参考文献
 
 ### [1].[FEX——HTML head 头标签](http://fex.baidu.com/blog/2014/10/html-head-tags/)
 
@@ -69,12 +69,6 @@ date:   2016-02-25 22:29
 ### [3].[腾讯的AlloyTeam团队——移动web问题小结](http://www.alloyteam.com/2015/06/yi-dong-web-wen-ti-xiao-jie/)
 
 ### [4].[移动web开发规范](https://github.com/alanerzhao/doc/blob/master/document/mobile_web_specification%20.md)
-    
-    
-    
-   
-    
-   
 
 
 
