@@ -1,0 +1,152 @@
+---
+layout: post
+
+title:  "JS 面向对象学习笔记（一）"
+
+date:   2016-02-28
+
+---
+
+## 一.抽象，多态，继承.继承有哪几种方式，js生成对象有哪几种方式？
+
+1).js生成对象的几种方式
+	
+	1.对象直接量  
+	  json的格式定义对象:
+       
+         var oParent={name:"Paul",age:"40"}
+        
+
+    2.构造函数
+
+        function parent(){
+         this.name="Paul"; 
+        }
+        var oParent=new parent();
+        优点：可以传参
+       
+    3.工厂模式
+
+       function  create(sName,iAge){
+           var oSon= {};
+           oSon.name=sName;
+           oSon.age=sAge;
+           return oSon;
+         }
+       var oSon=create("Paul","30");
+      
+    4.原型模式
+	       
+		 function Parent() {}
+		 parent.prototype = {
+		   constructor:Parent,
+		   name:"paul",
+		   age:"18"
+		 }
+		 
+		 var oSon=new Parent();
+   
+缺点：初始化参数不支持传递，还有就是原型的所有属性和方法会被所有的实例共享
+      
+    5.原型+构造函数的方式
+	     function Parent(sJob) {
+	       this.job=sJob;
+	       }
+		 parent.prototype = {
+		   constructor:Parent,
+		   name:"paul",
+		   age:"18"
+		 }
+		 
+		 var oSon=new Parent("fed");
+
+    6.闭包下的私有变量模式
+
+		 (function() {
+		     var name = "";
+		     Parent = function(val) {
+		         name = val;
+		     };
+		     Parent.prototype = {
+		         constructor: Parent,
+		         getName: function() {
+		             return "Parent's name is " + name;
+		         }
+		     };
+		 })();
+	  
+	  
+		var webdesigner = new Parent("steven");
+		console.log(webdesigner.name);           //undefined
+		console.log(webdesigner.getName());      //Parent's name is steven
+
+总结，面向对象有三个特性封装，多态，继承，他最主要的是实现代码的可重用性，在js中，由于无法向原型对象传参，构造函数真好相反，所以将公共的，不变的属性放在原型对象中实现共享，将需要改变的放在构造函数中实现多态，当然如果想模拟类似java的私有变量可以使用闭包，当然也意味着内存开销。
+
+2).js的面向对象的继承方式
+    
+   1. 类式继承
+
+    学习java的继承的方式：在实例化子对象之前，先实例化父类
+	   function SuperType(name) {
+	        this.name = name;
+	    }
+	
+	    function SubType(name) {
+	        //继承了 SuperType,同时还传递了参数
+	        SuperType.apply(this,arguments);
+	
+	        //实例属性
+	        this.age = 25;
+	    }
+	
+	    var oInstance = new SubType("paul");
+	
+	    console.log(oInstance.name);//paul
+	    console.log(oInstance.age);//25 
+   缺点：不能继承父类的原型对象中的属性与方法。
+
+   2. 原型链继承
+
+    利用原型对象继承
+
+		function SuperType(name) {
+		    this.name = name;
+		}
+		
+		function SubType() {
+		    //实例属性
+		    this.age = 25;
+		}
+		
+		SubType.prototype = new SuperType("paul");
+		SubType.prototype.constructor=SubType;
+		
+		oInstance=new SubType();
+		console.log(oInstance.name); //paul
+		console.log(oInstance.age); //25
+
+  缺点：子类中实例化无法向父类传递参数，父类（原型对象）中的内容为所有子类所共有，就好像父亲类和儿子类拥有同一个名字
+  
+  3. 组合继承
+    
+		function SuperType(name) {
+		    this.name = name;
+		}
+		
+		function SubType(name) {
+		    SuperType.apply(this,arguments);
+		    this.age = 25;
+		}
+		
+		SubType.prototype = new SuperType("paul");
+		SubType.prototype.constructor = SubType;
+		
+		oInstance = new SubType("john");
+		console.log(oInstance.name); //john
+		console.log(oInstance.age); //25
+    
+
+## 二.小结
+
+
+

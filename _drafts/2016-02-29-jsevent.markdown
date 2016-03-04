@@ -1,0 +1,146 @@
+---
+layout: post
+
+title:  "JS 事件学习笔记（一）"
+
+date:   2016-02-28
+
+---
+
+
+### 1.js事件传播的三个阶段
+
+1. 事件捕获：第一阶段从文档的根节点流向目标对象
+2. 目标阶段：目标对象本身的事件处理程序的调用
+3. 冒泡阶段：回溯到文档的根节点
+
+
+### 2.事件的类型
+
+### 3.事件注册
+
+   标准（IE9+，ff，ch。。。）：
+
+	addEventListener(eventType,handler,false){}
+    removeEventListner(eventType,handle,true){}
+   IE8-：
+    
+    attachEvent(eventType,handler){}
+    detach(){eventType,handler}
+   2.参数
+
+   * 第一个参数都是小写，不同的的是IE8之前都是多一个"on"
+   * 前者的第三个参数是表示函数将注册为事件捕获时的事件处理程序
+   * IE8之前不支持事件捕捉因此不存在第三个参数
+ 
+   3.事件处理程序的参数event
+
+    event=event||window.event
+    注意：IE8以前，没有向注册的时间事件处理程序传递event参数，但是可以使用window.event做替代
+
+   4.srcElement,currentTarget,target,this
+
+     IE8：srcElement为事件目标，this为window，那谁是obj？
+            obj.attachEvent('on' + ev, fn);
+
+     ff：currentTarget,target,this为currentTarget，
+        
+            obj.addEventListener(ev, fn, false);
+            this为currentTarget，currentTarget为obj，target为事件目标
+        
+### 4.事件取消
+
+    取消默认行为：
+	if(event.preventDefault){
+	            event.preventDefault();
+	        }else{
+	            event.eturnValue = false;
+	        }
+    
+    取消事件传播
+    if(event.stopPropagation){
+            event.stopPropagation();
+        }else{
+            event.cancelBubble = true;
+        }
+   
+### 5.事件调用的顺序
+    
+    三个原则：
+    
+    * 通过设置对象属性或者HTML属性注册的处理程序一直优先调用
+    * 通过addEventListener() 注册的处理程序按照他们的注册顺序调用
+    * 使用attachEvent()注册的处理程序可能按照任何顺序调用，所以代码不应该依赖于调用顺序
+
+### 6.事件运行的环境
+    
+   
+
+### 7.事件委托的原理，手写事件委托程序
+
+	function bind(obj, ev, fn) {
+	    if (obj.addEventListener) {
+	        obj.addEventListener(ev, fn, false);
+	    } else {
+	        obj.attachEvent('on' + ev, function() {
+	            fn.call(obj);
+	        });
+	    }
+	}
+
+### 8.常见事件
+
+ 鼠标事件
+
+ 鼠标滚轮事件，js，jquery
+
+ mousewheel:ie/chrome/opera,ff:DOMMouseScroll
+
+ detail与wheelDelta只各取两个 值，detail只取±3，wheelDelta只取±120
+
+ event.delta = (event.wheelDelta) ? event.wheelDelta / 120 : -(event.detail || 0) / 3;
+ event.delta>0,向上，
+
+ [鼠标滚轮事件兼容性1](http://www.dengzhr.com/frontend/js/440)
+
+ [鼠标滚轮事件兼容性2](http://www.zhangxinxu.com/wordpress/2013/04/js-mousewheel-dommousescroll-event/)
+
+ 键盘事件
+
+	 keydown——>keypress——>keyup
+	  
+	 event.keyCode都可以获得值
+	
+	 event.charCode在keypress下可以获得值,并且keypress下charCode，key'code区分大小写，a：97，A：65
+	
+	 event.which 是ff,chrome的属性
+	
+	 event.altKey|event.ctrlKey|event.shiftKey|event.metaKey
+     兼容的写法：
+     event.keyCode||event.charCode||event.which
+     
+     String.fromCharCode()
+ 
+ 文本事件
+    
+    
+ 
+
+
+### 9.[dispatchEvent:事件派发](http://www.zhangxinxu.com/wordpress/2012/04/js-dom%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/)
+
+dispatchEvent方法使用“3步走”，“创建(createEvent)-初始(init*Event)-分派(dispatchEvent)”
+
+
+	// 创建
+	var evt = document.createEvent("HTMLEvents");
+	// 初始化
+	evt.initEvent("alert", false, false);
+	
+	// 触发, 即弹出文字
+	dom.dispatchEvent(evt);
+
+[dispatchEvent 兼容](http://blog.csdn.net/zeroxiaozou/article/details/12248781)
+
+
+

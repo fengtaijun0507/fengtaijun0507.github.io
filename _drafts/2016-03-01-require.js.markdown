@@ -1,0 +1,52 @@
+---
+layout: post
+
+title:  "require.js学习笔记（一）"
+
+date:   2016-02-28
+
+---
+
+
+
+### 一.AMD与CMD
+
+[1.anji博客：JS 的模块化编程（一）- 模块的基本写法](http://anjia.github.io/2015/06/23/js_module_2_AMD%E5%92%8CCMD/)
+
+	   AMD 运行时核心思想是「Early Executing」，也就是提前执行依赖。这个好理解。
+	   CMD 按需执行依赖可以避免浪费，但是带来更长的等待时间。
+
+AMD的例子：
+	
+
+CMD的例子
+
+### 二.require.js语法
+
+1)require.js和main.js的引入：
+
+	<script data-main="scripts/main.js" src="scripts/require.js"></script>
+>    注意：
+>    
+>    1.RequireJS以一个相对于baseUrl的地址来加载所有的代码
+>          
+>    2.如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录。
+
+
+* www/
+   *　index.html
+   *　js/
+      * app/
+         * sun.js
+      * lib/
+         * jquery.js
+         * canvas.js
+      * main.js
+
+
+　　　　　
+
+
+### 参考
+
+#### [require.js中文网](http://www.requirejs.cn/)

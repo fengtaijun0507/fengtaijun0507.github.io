@@ -1,0 +1,28 @@
+---
+layout: post
+
+title:  "JS This"
+
+date:   2016-02-28
+
+---
+
+this：判断this的取值：大的原则就是看他是被谁调用的：
+
+	var x = 10;
+	var obj = {
+		x: 20,
+		f: function(){
+			console.log(this.x);//20
+			var foo = function(){ console.log(this.x); }
+			foo(); // 10
+		}
+	};
+	
+	obj.f()
+
+
+以后有时间接着搞。
+
+### 参考
+#### [1].[js中this 详解](https://segmentfault.com/a/1190000003046071)
