@@ -35,6 +35,7 @@ date:   2016-03-04
 >  var x = 1;
 
 因为：
+
 >  var x;
 >  
 >  console.log(x);
