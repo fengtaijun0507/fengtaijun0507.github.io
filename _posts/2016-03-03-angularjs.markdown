@@ -120,7 +120,7 @@ C:
   
   其中函数参数element:为宿主标签(A)或者指令本身(E)
 
-  详细见[例子](待会上传到gh-pages)
+  详细见[例子](http://fengtaijun0507.github.io/testpages/angular/2templateUrl.html)
 
 3)replace:true
 
