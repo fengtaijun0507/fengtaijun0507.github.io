@@ -20,7 +20,7 @@ date:   2016-03-06
 >    充当元素的相应的模板内容，而元素的额自定义属性一般对应相应的功能,也就是ACE的匹配模式相对应的方式
 > 
 > 
-> C．以$开头的的内置的，是type，provider，service中的一种：$http, $filter,service这类一般以参数的形式，通过注入的方式下载控制器下面
+> C．以$开头的的内置的，是provider，service中的一种：$http, $filter,service这类一般以参数的形式，通过注入的方式下载控制器下面
 > 自定义sevice: mymodule.factory创建，再通过控制器去注入
 > 
 > D．发现angular自定义：总是通过mymodule.filter，mymodule.directive等mymodule.的方式来进行
@@ -154,6 +154,9 @@ C:
             }
            scope：父级或者宿主元素的scope/当指定了独立scope时候，为自己的scope 	
            element:
+            指令E:replace:false,elelment就是指元素本身；replace:true,element是替换元素
+            指令A:rreplace:false,element是宿主元素;replace:true,element是替换元素
+            这里有个问题，如果替换的是文本是什么情况？亲测，给自己的建议即使是纯文本外面也要包裹一个元素
 
 
 7)指令与指令之间的通信

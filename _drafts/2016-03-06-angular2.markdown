@@ -1,0 +1,47 @@
+---
+layout: post
+
+title:  "Angular.js学习笔记（二）"
+
+date:   2016-02-28
+
+---
+
+### 七.工具函数
+
+
+### 八.其他
+
+
+1.常见的模块，动画
+
+
+2.内置指令
+
+
+3.内置服务
+
+
+4.scope
+  方法： $apply
+  事件：
+  绑定：
+ 
+5.双向数据绑定
+
+
+6.路由
+
+7.link函数：绑定事件，操作Dom，访问元素属性，访问父级的ctrl
+  compile:
+
+
+      一定要弄清楚，这四个参数具体是指哪个元素的参数，即判断element是谁最重要
+      function(scope, element, attr, reController){
+       }
+      指令E:replace:false,elelment就是指元素本身；replace:true,element是替换元素
+      指令A:rreplace:false,element是宿主元素;replace:true,element是替换元素
+      这里有个问题，如果替换的是文本是什么情况？亲测，给自己的建议即使是纯文本外面也要包裹一个元素
+  
+
+8.一些注意事项
