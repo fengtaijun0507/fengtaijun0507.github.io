@@ -3,7 +3,7 @@ layout: post
 
 title:  "Angular.js学习笔记（一）"
 
-date:   2016-03-06
+date:   2016-03-07
 
 ---
 
@@ -19,14 +19,13 @@ date:   2016-03-06
 > 
 >    充当元素的相应的模板内容，而元素的额自定义属性一般对应相应的功能,也就是ACE的匹配模式相对应的方式
 > 
-> 
-> C．以$开头的的内置的，是provider，service中的一种：$http, $filter
->    自定义sevice: mymodule.factory创建，再通过控制器去注入
-> 
-> D．angular自定义：总是通过mymodule.filter，mymodule.directive等mymodule.***的方式来进行
+
+3)$http,内置的service都是以$开头：$http, $filter，自定义sevice: 可以通过mymodule.factory等创建，为了和内置服务区别最好不以$开头，并且在依赖注入时，应写在内置后面以区分
+ 
+> A．angular自定义：总是通过mymodule.filter，mymodule.directive等mymodule.***的方式来进行
 > 
 > 注意：这也就说都是挂载在module上，若不是在同一个module下的话，需要通过引入相应自定义模块，才能使用
-> 
+ 
 
 ### 二.angular概述
 
