@@ -20,10 +20,10 @@ date:   2016-03-06
 >    充当元素的相应的模板内容，而元素的额自定义属性一般对应相应的功能,也就是ACE的匹配模式相对应的方式
 > 
 > 
-> C．以$开头的的内置的，是provider，service中的一种：$http, $filter,service这类一般以参数的形式，通过注入的方式下载控制器下面
-> 自定义sevice: mymodule.factory创建，再通过控制器去注入
+> C．以$开头的的内置的，是provider，service中的一种：$http, $filter
+>    自定义sevice: mymodule.factory创建，再通过控制器去注入
 > 
-> D．发现angular自定义：总是通过mymodule.filter，mymodule.directive等mymodule.的方式来进行
+> D．angular自定义：总是通过mymodule.filter，mymodule.directive等mymodule.***的方式来进行
 > 
 > 注意：这也就说都是挂载在module上，若不是在同一个module下的话，需要通过引入相应自定义模块，才能使用
 > 
