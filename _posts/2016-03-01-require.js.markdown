@@ -1,0 +1,118 @@
+---
+layout: post
+
+title:  "require.js学习笔记（一）"
+
+date:   2016-03-07
+
+---
+
+
+
+### 一.AMD与CMD
+
+[1.anji博客：JS 的模块化编程（一）- 模块的基本写法](http://anjia.github.io/2015/06/23/js_module_2_AMD%E5%92%8CCMD/)
+
+	   "AMD 运行时核心思想是「Early Executing」，也就是提前执行依赖。这个好理解。
+	    CMD 按需执行依赖可以避免浪费，但是带来更长的等待时间。"
+
+### 二.require.js语法
+
+1.require.js和main.js的引入：
+
+	<script data-main="script/main.js" src="script/require.js"></script>
+
+>    注意：
+>    
+>    1.RequireJS以一个相对于baseUrl的地址来加载所有的代码
+>               
+>    2.如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录
+>    
+>    3.也可以使用绝对位置或者cdn地址
+
+2.主文件的书写：配置文件
+
+  1）参数baseUrl和paths是相互配合的,
+
+    A.baseUrl相对位置，相对的是index.html所处的文件夹，也就说是引用require.js的网页所处的文件夹名
+
+    B.require执行文件一定要写在main.js文件中吗？经过测试要想执行的话,在主函数引入并执行了,但是不
+      是所有模块都要最终放到主配置文件中调用，这不是造成配置文件很乱？思考一下。
+
+  2)关于存储在cdn中的文件到底是应该用require.js去引入，还是直接在script中引入，我觉得前者可以有，但要试一试
+
+    A."jquery": "http://cdn.bootcss.com/jquery/2.1.1/jquery.min",path中引入其他文件后的js不可以带，因为require会自自动加上后缀
+
+  3)配置文件代码示例
+
+    require.config({
+    baseUrl: "script/",
+    paths: {
+        "testmodule1": "module/testmodule1",
+        "testmodule2": "module/testmodule2",
+        "testmodule3": "module/testmodule3",
+        "jquery": "http://cdn.bootcss.com/jquery/2.1.1/jquery.min",
+        "underscore": "http://cdn.bootcss.com/underscore.js/1.8.3/underscore"
+    },
+    shim: {
+        'underscore': {
+            deps: [],
+            exports: '_'
+        }
+    }
+    })
+
+### 三.[**优化**](http://www.oschina.net/translate/optimize-requirejs-projects)
+
+由于require.js的模块是以文件为基本单位，一个模块对应一个文件，所以js数量会相对较多，并且该类文件之间又存在着依赖，简单的合并和压缩可能并不奏效，所以要进行特别的优化
+
+1).安装r.js:通过全局安装requirejs：npm install -g requirejs
+
+2).运行：node r.js -o build.js
+
+3)."假设单页面，要加载10个脚本，可以使用楼主上述做法，合并加压缩，如果是多个页面，并且对于requireJS的配置已经抽出公共部分了，那该如何实现，根据每个页面的不同的脚本数，进行自动化合并"
+
+4).注意build.js，它是优化的配置文件，下面我的配置文件bulid.js的内容，详细参数可查阅[优化 RequireJS 项目（合并与压缩）](http://www.oschina.net/translate/optimize-requirejs-projects)
+
+	   ({
+	    appDir: "./",
+	    dir: './dir',
+	    baseUrl: "script/",
+	    modules: [{
+	        name: 'main'
+	    }],
+	    fileExclusionRegExp: /^(r|build)\.js$/,
+	    optimizeCss: 'none',
+	    removeCombined: true,
+	    paths: {
+	        "testmodule1": "module/testmodule1",
+	        "testmodule2": "module/testmodule2",
+	        "testmodule3": "module/testmodule3",
+	        "jquery": "lib/jquery-1.11.3",
+	        "underscore": "lib/underscore"
+	    },
+	    shim: {
+	        'underscore': {
+	            deps: [],
+	            exports: '_'
+	        }
+	    }
+	})
+
+5).压缩前后的额效果对比
+
+![压缩前](http://fengtaijun0507.github.io/testpages/require/img/uncompressed.png)
+![压缩后](http://fengtaijun0507.github.io/testpages/require/img/compressed.png)
+
+### 四.其他（插件,image,txt,markdown;jsonp,）
+
+
+
+　　　　　
+
+### 五.参考
+
+#### 1.[require.js中文网](http://www.requirejs.cn/)
+
+#### 2.[优化 RequireJS 项目（合并与压缩）](http://www.oschina.net/translate/optimize-requirejs-projects)
+###  3.[anji博客：JS 的模块化编程](http://anjia.github.io/2015/06/23/js_module_2_AMD%E5%92%8CCMD/)
