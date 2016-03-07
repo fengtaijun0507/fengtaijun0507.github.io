@@ -23,27 +23,27 @@ date:   2016-03-07
 	<script data-main="script/main.js" src="script/require.js"></script>
 
 >    注意：
->    
+>
 >    1.RequireJS以一个相对于baseUrl的地址来加载所有的代码
->               
+>
 >    2.如果没有显式指定config及data-main，则默认的baseUrl为包含RequireJS的那个HTML页面的所属目录
->    
+>
 >    3.也可以使用绝对位置或者cdn地址
 
 2.主文件的书写：配置文件
 
-  1）参数baseUrl和paths是相互配合的,
+  1).参数baseUrl和paths是相互配合的,
 
     A.baseUrl相对位置，相对的是index.html所处的文件夹，也就说是引用require.js的网页所处的文件夹名
 
     B.require执行文件一定要写在main.js文件中吗？经过测试要想执行的话,在主函数引入并执行了,但是不
       是所有模块都要最终放到主配置文件中调用，这不是造成配置文件很乱？思考一下。
 
-  2)关于存储在cdn中的文件到底是应该用require.js去引入，还是直接在script中引入，我觉得前者可以有，但要试一试
+  2).关于存储在cdn中的文件到底是应该用require.js去引入，还是直接在script中引入，我觉得前者可以有，但要试一试
 
     A."jquery": "http://cdn.bootcss.com/jquery/2.1.1/jquery.min",path中引入其他文件后的js不可以带，因为require会自自动加上后缀
 
-  3)配置文件代码示例
+  3).配置文件代码示例
 
     require.config({
     baseUrl: "script/",
