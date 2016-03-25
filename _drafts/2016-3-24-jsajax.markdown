@@ -1,0 +1,14 @@
+---
+layout: post
+
+title:  "Ajax 学习笔记"
+
+date:   2016-03-24
+
+---
+
+以后抽时间去系统学习，并总结！
+
+[segmentfalut](https://segmentfault.com/a/1190000004322487)
+
+[ruanyifeng](http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html)

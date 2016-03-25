@@ -1,0 +1,12 @@
+---
+layout: post
+
+title:  "XSS与CSRF（一）"
+
+date:   2016-03-23
+
+---
+
+1.据说这个XSS过滤模块特别吊：http://jsxss.com/zh/index.html
+
+内容转义，标签白名单过滤

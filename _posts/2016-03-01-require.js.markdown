@@ -104,13 +104,30 @@ date:   2016-03-07
 ![压缩前](http://fengtaijun0507.github.io/testpages/require/img/uncompressed.png)
 ![压缩后](http://fengtaijun0507.github.io/testpages/require/img/compressed.png)
 
-### 四.其他（插件,image,txt,markdown;jsonp,）
+
+### 四.引入jQuery插件，如何也保证jQuery插件也遵循AMD规范：
+
+	(function (factory) {
+	    if (typeof define === "function" && define.amd) {
+	        // AMD模式
+	        define([ "jquery" ], factory);
+	    } else {
+	        // 全局模式
+	        factory(jQuery);
+	    }
+	}(function ($) {
+	    $.fn.jqueryPlugin = function () {
+	        //插件代码
+	    };
+	}));
+
+### 五.其他（插件,image,txt,markdown;jsonp,）
 
 
 
 　　　　　
 
-### 五.参考
+### 六.参考
 
 #### 1.[require.js中文网](http://www.requirejs.cn/)
 

@@ -1,0 +1,114 @@
+---
+layout: post
+
+title:  "JS cookie（一）"
+
+date:   2016-03-18
+
+---
+
+1.cookie一般应用，记住一定的信息，用户名，密码，字符串
+
+	如何是标志登陆状态还是退出状态（通过查看用户账户（key）对应cookie的）
+	判断userid是否存在
+
+
+2.cookie与缓存的区别：可以被js操作，缓存是通过服务器和浏览器组合使用
+
+3.cookie的特点，
+
+    1）.cookie会在服务器与客户端相互传递
+
+    2）.cookie在同一浏览器下是共享的
+
+    3）.数量和体积是有限的
+       理论上是不会超过50个（通过flash cookie,html cookie，以及其他一起来用的）;总的大小一般是说4k
+            过期时间
+    注意：当cookie满了之后，会出现什么情况：不同的浏览器情况不一样
+
+cookie 存在于客户端，其实是以文件的方式，内容没有加密，可以被手动更改，所以敏感的数据是不应该存于cookie
+
+4.在试验模拟cookie的时候，需要搭建服务器环境，但是火狐浏览器是可以本地存储cookie的，当然也可以搭建一个服务器
+
+5.cookie的使用语法（js）
+	
+	cookie的设置：
+    1.name=value
+    2.不会覆盖
+    3.过期时间：expires=时间，如果没有指定过期时间，那么知道浏览器关闭为止
+        日期对象的使用
+    4.封装函数
+    
+     设置cookie
+
+	 function setCookie(sName, sValue, iDay) {
+	    var oDate = new Date();
+	    oDate.setDate(oDate.getDate() + iDay);
+	    document.cookie = sName + "=" + sValue + ";expires=" + oDate;
+	   }
+
+
+    读取cookie-字符串的分割
+	function getCookie(name) {
+	    var arr = document.cookie.split("; ");
+	    var i = 0;
+	    for (; i < arr.length; i++) {
+	        var arr2 = arr[i].split("=");
+	        if (arr2[0] == name)
+	            return arr2[1];
+	    }
+	    return null;
+	}    
+    删除cookie，而且有时候是需要指定cookie的path，domain，等一些其他属性才能删除
+     cookie过期
+	function removeCookie(sName, sValue) {
+    setCookie(sName, sValue, -1)
+    }
+
+6.后端设置的cookie
+
+Jsp:request.getCookie()获取客户端提交的所有Cookie（以Cookie[]数组形式返回），通过response.addCookie(Cookie cookie)
+cookie对象一般包括name，value，maxAge，path，domain等属性
+
+
+
+
+
+7.cookie总结
+
+      通过cookie记录当前的登陆状态，而设置与删除Cookie由后端负责
+
+
+8.前后端设置cookie的区别
+
+
+最后：
+
+比较
+6.session会话：页面打开到页面关闭时存在的，窗口的临时存储
+
+Session是服务器端使用的一种记录客户端状态的机制，在客户端第一次访问服务器器时候哦产生，在内存中超过国企时间会被删除
+
+Session保存在服务器端。为了获得更高的存取速度，服务器一般把Session放在内存里。每个用户都会有一个独立的Session。如果Session内容过于复杂，当大量客户访问服务器时可能会导致内存溢出。因此，Session里的信息应该尽量精简。
+
+
+
+session cookie与persistent cookie（通常所说的cookie）
+注意session cookie是存储于浏览器内存中的，并不是写到硬盘上的
+
+
+
+
+
+
+sessionStorage：暂时性本地存储
+
+localStorage：本地存储，永久性存储，
+
+    存储量变大，4M
+	不需要与服务器进行交互
+	只针对当前窗口共享，也可以设置给其他窗口共享
+	window.onunload()事件
+	storage共享的页面的会触发该事件
+
+
