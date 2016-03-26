@@ -3,7 +3,7 @@ layout: post
 
 title:  "移动端开发学习笔记（一）"
 
-date:   2016-02-26
+date:   2016-03-26
 
 ---
 
@@ -57,6 +57,7 @@ date:   2016-02-26
 #### 头文件最终成果:[head](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/head.txt),[head2](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/head2.txt)
 
 ### 三.移动端的适配
+
 目前比较成熟的适配方案：1.定宽布局；2.rem布局 具体见移动端开发学习笔记（二）
 
 
