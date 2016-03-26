@@ -54,6 +54,8 @@ date:   2016-03-26
     <link rel="apple-touch-icon-precomposed" sizes="180x180" href="retinahd_icon.png">
     缩略图
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+
+
 #### 头文件最终成果:[head](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/head.txt),[head2](http://fengtaijun0507.github.io/testpages/mobile/mobilehead/head2.txt)
 
 ### 三.移动端的适配
