@@ -121,12 +121,9 @@ date:   2016-03-07
 	    };
 	}));
 
-### 五.其他（插件,image,txt,markdown;jsonp,）
-
-
+### 五.其他（插件,image,txt,markdown;jsonp,...）
 
 　　　　　
-
 ### 六.参考
 
 #### 1.[require.js中文网](http://www.requirejs.cn/)

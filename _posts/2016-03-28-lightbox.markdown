@@ -1,0 +1,97 @@
+---
+layout: post
+
+title:  "Study from Mooc __Lightbox制作（一）"
+
+date:   2016-03-28
+
+---
+
+### 一.学习作品展示：[lightbox](http://fengtaijun0507.github.io/testpages/else/lightbox/index.html)
+
+通过学习lightbox的制作，主要是学习js面向对象的方式创建弹出层，像这种弹出层，在网页端还是很常见的，最常见的就是登陆页面。
+
+### 二.组建的框架如下所示：
+
+1）自执行函数，2）然后函数lightBox中的构造函数，3）lightBox.prototype，4）以及将window["lightBox"] = lightBox注册到window，5）传入jQuery
+
+
+	(function($) {
+    var lightBox = function() {
+        var self = this;
+    };
+
+    lightBox.prototype = {
+      constructor:lightBox,
+     };
+
+    window["lightBox"] = lightBox;
+
+	}(jQuery));
+
+至于自执行函数这个不必说，js oop的方式，使用构造函数与原型对象混合模式。
+
+### 三.一个ui插件当然要包含的三大块，方法，事件，变量。
+
+1.变量：一般变量，因为ui组建肯定是伴随着DOM的操作，因此参数的话，肯定是包含一系列需要操作的DOM节点，其次是用于传递整体信息的参数比如index，tag之类,临时变量就不说了，值得注意的是mooc的老师是强调this的偏移现象，需要
+时刻保存变量。
+
+  	lightBox的变量举例如下：
+        
+        var self = this;
+
+        this.mask = $("<div id='mask'>");//DOM变量
+        this.popUp = $("<div class='photo_border'>");
+
+        this.index = 0;//索引
+        this.flag = true;//防止鼠标连续点击误操作的标志flag
+
+注意：
+
+第一：另外像变量，或者说是参数这种一般都会放在构造函数中，因为构造函数一般可接受实参的，而原型对象一般是不行的。
+
+第二：构造函数中一般调用一些初始化函数执行。而方法这种公共，一般放入原型对象中被实例继承
+
+
+2.方法：ui组件本身是需要ui的载体的，1）所以渲染dom结构应该是必备的方法，2）初始化的方法也是必须的，3）其他方法自然是包括获取数据，实现效果的相关方法，还有就是4）工具方法，工具方法和一些过程中执行逻辑的抽象出来的方法，这些方法会被调用。当然
+    
+    //本插件包含的方法
+	renderDom();
+    getGroup();//获取数据
+    popUpInit();//初始化
+    showMaskandpopUP();//执行方法
+    _getIndexof();//工具方法
+    _addDisabled();//过程中重复使用的代码片段的，抽象出方法以便复用，那我自己娶一个名字为"5）逻辑方法"
+    _preLoadImg();//逻辑方法，图片预加载
+    _changePicSize();//逻辑方法，弹出层的各个区域的尺寸设置
+    _goTo()//逻辑方法，左右切换
+
+
+3.事件
+其实事件的话，再另一做全屏显示的jQuery插件中，事件的位置是放在prototype，本例中mooc的作者将事件放在构造函数中，我个人觉得放在构造函数中，这样结构更加清晰，然后增加一个初始化的方法，将ui初始化，事件初始化等凡在一起，并于管理。这个先不管，等有时间和后面的疑问一起把它解决掉
+
+本lightBox含有的额事件包括只包括click，mouseover两类事件，举例
+
+
+    this.bodyNode.on("click", ".js-lightBox,*[data-role=lightbox]", function(event) {
+            event.stopPropagation();
+            var curName = $(this).attr("data-group");
+            if (curName != self.groupName) {
+                self.groupName = curName;
+                self.getGroup();
+            }
+
+            self.popUpInit($(this));
+
+        });
+
+如果想看源代码的话，直接在文章开头的地址，同chrome调试工具查看即可 。  
+
+### 四.总结
+   
+说了这么多，我该说我的疑问了，第一个数据的问题，因为他将数据全部绑定在元素上，我觉得以后可以尝试使用模板渲染的方式放到html元素上去，主要的疑问就是这个，还有就是init的事情，找时间试试。另外就是还有lightbox（下）也需要看看。
+
+
+
+
+
