@@ -1,0 +1,111 @@
+---
+layout: post
+
+title:  "CSS 居中（一）"
+
+date:   2016-03-31
+
+---
+
+## 概述
+
+这是大地老师总结的CSS布局的分类：“所有的CSS布局其实都是围绕着这些布局模块来的，水平垂直居中也一样。”
+
+
+* 盒子内部的布局 
+    
+    * 文本的布局
+    * 盒子模型本身的布局
+* 盒子之间的布局 
+    * 脱离正常流normal flow的盒子布局
+        * absolute上下文的布局
+        * float上下文的布局
+    * 正常流的盒子布局   
+        * BFC上下文的布局
+        * IFC上下文的布局
+        * FFC上下文的布局
+        * table上下文的布局
+        * css grid上下文的布局
+          
+
+## 1)文字居中
+
+ 1.单行文字的水平垂直居中
+
+   line-height+text-align
+   line-height与父级height等高，或者不需要设置父级height，直接用line-height.
+
+ 2.多行文字居中
+   line-height+(text-align+inline-block)
+   将多行文字用span包裹，利用inline-block元素的特性达到文字居中的效果
+
+css：
+
+	.mulit_line {font-size: 0;height:150px;line-height: 150px;width:500px;
+     vertical-align:middle;border:1px dotted #ccc;background-color: #fdffdf;}
+
+    .mulit_line span {display: inline-block;line-height: 1.4em;}
+
+html：
+
+	<p class="mulit_line">
+	        <span style="font-size:12px;">
+	        	这里是高度为150像素的标签内的多行文字，文字大小为12像素。这里是第二行，用来测试多行的显示效果。
+	        </span>
+	        <i>&nbsp;</i>
+	</p>
+
+[效果](https://jsfiddle.net/fengtaijun/afcrjb5s/4/)
+ 
+## 2).[图片居中](http://www.zhangxinxu.com/study/200908/img-text-vertical-align.html)
+	
+   使用background-position:center center;
+   使用display：table-cell，font-size
+   使用inline-block+font-size
+
+## 3).div居中
+
+1.使用盒模型的居中
+  
+  padding/margin
+  <iframe width="100%" height="300" src="http://jsfiddle.net/fengtaijun/0oeed71o/1/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+   
+  适合定宽高类型的div居中
+
+  注意：padding时，添加background-clip:content-box;margin时，需要给父元素添加overflow：hidden，防止margin传递
+
+  注意：calc((100%-50px)/2):只能计算水平方向的值
+
+2.absolute布局的水平居中
+
+ * .50%（left，top：50%）-50%（margin-left|translate3d|relative）translate3d:可以不定宽高
+
+ * .text-align:center + absolute(inline-block)(margin-left:-width/2px|margin-top:-height/2px):
+   没有指定的left，top，bottom，right的absolute的元素就是普通元素
+    需要定宽高
+ * .absolute（left:0;top:0;bottom:0;right:0） + margin : auto
+    需要定宽高
+3.float布局的居中
+
+4.BFC布局上下文下的居中（盒模型居中）
+
+5.IFC布局上下文下的居中
+
+  text-align:center +inline-block( vertical-align:middle|line-height|font-size)
+
+  vertical-align:middle需要一个vertical-align对齐的参照物，父类需要定宽，本身可以不定宽
+
+  font-size大小需要计算需要乘以一个<1的系数
+
+6.FFC布局上下文下的居中
+
+  display:flex;justify-content:center;align-items:center;
+  不需要设置宽高
+
+## 参考文献
+
+### [1].[CSS布局之-水平垂直居中](http://div.io/topic/1155)
+
+### [2].[CSS元素水平垂直居中方法总结](http://www.cnblogs.com/Dudy/p/4085292.html)
+
+注意：这篇文章主要是参照大地老师和张鑫旭老师的的博客内容，然后综合整理，加深理解与记忆的，但是相应的程序
